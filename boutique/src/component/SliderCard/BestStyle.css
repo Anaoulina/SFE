@@ -1,0 +1,35 @@
+.best {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 90vh;
+    margin-bottom: 200px;
+}
+
+.best h1 {
+    color: #171717;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.best hr {
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+    background: #252525;
+}
+
+.best-item {
+    margin-top: 50px;
+    display: flex;
+    gap: 150px;
+    height: 200px;
+    border-radius: 10px;
+    transition: transform 0.4s;
+  }
+  
+  .best-item div {
+    display: block;
+  }
+  

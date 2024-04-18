@@ -8,7 +8,10 @@ import Service from '../../component/SliderCard/Service';
 import { SliderData } from '../../component/SliderCard/SliderData';
 
 import { Container } from 'react-bootstrap';
-
+import Product from '../Products/Product';
+import Productcate from '../../component/SliderCard/Productcate';
+import Bestsiller from '../../component/SliderCard/Bestsiller';
+import Footer from '../../component/Footer/footer';
 
 
 
@@ -36,6 +39,13 @@ function Home() {
       <section>
           <Service style={{ marginTop: '100px' }} />
       </section>
+      
+      <Productcate/>
+      <Bestsiller/>
+      <Footer/>
+      
+      
+      
   </>
   )
 }

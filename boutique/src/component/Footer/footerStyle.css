@@ -1,0 +1,36 @@
+.footer {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    padding: 40px 0;
+  }
+  
+  .footer a {
+    color: #6c757d;
+  }
+  
+  .footer a:hover {
+    color: #212529;
+  }
+  
+  .footer .social-icons a {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+  
+  .footer .social-icons a:last-child {
+    margin-right: 0;
+  }
+  
+  .footer .company-info {
+    margin-top: 20px;
+  }
+  
+  .footer .company-info p {
+    margin-bottom: 10px;
+  }
+  
+  .footer .copy {
+    margin-top: 20px;
+    font-size: 0.8rem;
+  }
+  

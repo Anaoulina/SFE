@@ -1,5 +1,6 @@
 import { IonIcon } from '@ionic/react';
 import sofaSlide from '../../Image/imgslide1.png';
+import Tab from '../../Image/tableaubanner.jpeg';
 
 export const SliderData = [
     {
@@ -54,4 +55,44 @@ export const SliderData = [
       bg: "#d6e5fb",
     },
   ];
+
+  export const data_product = [
+    {
+      id : 1,
+      name : "tableau",
+      image:Tab , 
+      new_price : 50.50,
+      old_price : 80.50,
+    },
+    {
+      id : 2,
+      name : "tableau",
+      image:Tab , 
+      new_price : 50.50,
+      old_price : 80.50,
+    },
+    {
+      id : 3,
+      name : "tableau",
+      image:Tab , 
+      new_price : 50.50,
+      old_price : 80.50,
+    },
+    {
+      id : 4,
+      name : "tableau",
+      image:Tab , 
+      new_price : 50.50,
+      old_price : 80.50,
+    },
+    {
+      id : 5,
+      name : "tableau",
+      image:Tab , 
+      new_price : 50.50,
+      old_price : 80.50,
+    },
+
+  ];
+
   
