@@ -37,7 +37,7 @@ const Service = () => {
                 className="feature"
                 key={index}
               >
-                <div className="icon">{iconComponent}</div>
+                <div className="icone">{iconComponent}</div>
                 <h3>{val.title}</h3>
                 <p>{val.subtitle}</p>
               </Col>

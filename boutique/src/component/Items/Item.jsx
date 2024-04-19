@@ -9,7 +9,7 @@ function Item(props) {
         <>
             <div className='item' >
 
-                <img src={props.image} alt="notFound" />
+                <img src={props.image} style={{height:'250px' , width :'250px'} } alt="notFound" />
                 <p>{props.name}</p>
                 <div className="container">
                 <div className="item-prices">

@@ -1,13 +1,14 @@
-// Navbar.jsx
 import React, { useEffect, useState } from 'react';
 import './navbarstyle.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigation } from 'react-router-dom';
 import Cart from '../CartView/cart';
 
 function Navbar() {
   const [isFixed, setIsFixed] = useState(false);
   const [menu, setMenu] = useState("Home");
   const [modalShow, setModalShow] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const route = useNavigation ;
 
   function showHideModal() {
     setModalShow(!modalShow);
@@ -24,20 +25,19 @@ function Navbar() {
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler);
 
-    // Clean up
     return () => {
       window.removeEventListener('scroll', scrollHandler);
     };
   }, []);
 
   return (
-    <nav className={`navbar navbar-expand-lg navbar-light bg-white shadow py-3 ${isFixed ? 'fixed-top' : ''}`}>
+    <nav className={`navbar navbar-expand-lg navbar-light bg-white shadow py-3 ${isFixed ? 'fixed-top' : ''} ${isCollapsed ? 'collapsed-navbar' : ''}`}>
       <div className="container-fluid py-2">
         <h6>logo</h6>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" onClick={() => setIsCollapsed(!isCollapsed)} aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse " id="navbarSupportedContent">
+        <div className={`collapse navbar-collapse ${isCollapsed ? '' : 'show'}`} id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             <li className="nav-link active fw-bold " onClick={() => { setMenu("Home") }} > <Link style={{textDecoration : 'none' , color : 'black'}} to='/'>Home </Link> {menu === "Home" ? <hr /> : <></>}</li>
             <li className="nav-link active fw-bold " onClick={() => { setMenu("Shop") }} > <Link style={{textDecoration : 'none' , color : 'black'}} to='/Shop' >Shop</Link> {menu === "Shop" ? <hr /> : <></>}</li>
