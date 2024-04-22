@@ -96,9 +96,10 @@ export const data_product = [
 
 export const dataShop = [
   {
-    id: 1,
-    name: "tableau",
+    id: 0,
+    name: "tableau1",
     image: Tab,
+    personnaliser : 1 ,
     category: "tab",
     new_price: 50.50,
     old_price: 80.50,
@@ -113,6 +114,7 @@ export const dataShop = [
     name: "Tab",
     image: Tab,
     category: "tab",
+    personnaliser : 0 ,
     new_price: 50.50,
     old_price: 80.50,
     shortDesc:
@@ -122,9 +124,10 @@ export const dataShop = [
 
   },
   {
-    id: 1,
+    id: 2,
     category: "sofa",
     name: "sofaSlide",
+    personnaliser : 0 ,
     image: sofaSlide,
     new_price: 50.50,
     old_price: 80.50,
@@ -135,10 +138,11 @@ export const dataShop = [
 
   },
   {
-    id: 1,
+    id: 3,
     name: "tableau",
     image: Tab,
     category: "tab",
+    personnaliser : 0 ,
     new_price: 50.50,
     old_price: 80.50,
     shortDesc:
@@ -148,10 +152,11 @@ export const dataShop = [
 
   },
   {
-    id: 1,
-    name: "sofaSlide",
+    id: 4,
+    name: "Slide",
     category: "sofa",
     image: sofaSlide,
+    personnaliser : 1 ,
     new_price: 50.50,
     old_price: 80.50,
     shortDesc:

@@ -1,13 +1,12 @@
-/* navbarstyle.css */
 .cart-modal {
   position: fixed;
   top: 0;
   right: 0;
   height: 100%;
-  width: 300px; /* Set the width of the cart modal */
+  width: 300px; 
   background-color: white;
-  border-left: 1px solid #ccc; /* Add a border to separate from the rest of the content */
+  border-left: 1px solid #ccc; 
   padding: 20px;
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds the modal height */
-  z-index: 1050; /* Ensure the modal is above other content */
+  overflow-y: auto; 
+  z-index: 1050; 
 }
