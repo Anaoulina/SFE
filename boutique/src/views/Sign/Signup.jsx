@@ -9,8 +9,13 @@ import {
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
+    const navigate = useNavigate();
+        function handelSignupClick(){
+            navigate('/login');
+          }
   return (
     <Container fluid>
 
@@ -20,7 +25,7 @@ function Signup() {
             <Col md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
 
               <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-
+<Form>
               <div className="d-flex flex-row align-items-center mb-4 ">
                 <i className="fas fa-user me-3" style={{ fontSize: '1.5rem' }}></i>
                 <Form.Control placeholder='Your Name' />
@@ -48,11 +53,12 @@ function Signup() {
               </div>
 
 
-              <Button className='mb-4' size='lg' style={{ backgroundColor: '#03a49c', border: ' none' }}>
+              <Button className='mb-4' size='lg' style={{ backgroundColor: '#03a49c', border: ' none' ,width:'100%' }}>
                 Register
               </Button>
+              </Form>
 
-
+              <p className="mb-0">You already have an account? <a href="#" onClick={handelSignupClick}>Login</a></p>
             </Col>
 
             <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
@@ -62,7 +68,6 @@ function Signup() {
           </Row>
         </Card.Body>
       </Card>
-
     </Container>
   );
 }

@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Col, Container, Modal, Row, Toast } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 //import { addToCart } from '../../actions/cartActions';
 import './itemselecte.css';
+import { ShopContex } from '../../Context/ShopContex';
 
 function Itemselected(props) {
   //const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
+  const {addToCard} = useContext(ShopContex);
 
   const handleQuantityChange = (e) => {
     setQuantity(e.target.value);
   };
 
-  const handleAddToCart = () => {
-    // dispatch(addToCart({ product: props, quantity: quantity }));
-    // toast.success('Product has been added to cart!');
-    console.log('khdama');
-  };
+  // const handleAddToCart = () => {
+  //   // dispatch(addToCart({ product: props, quantity: quantity }));
+  //   // toast.success('Product has been added to cart!');
+  //   console.log('khdama');
+  // };
 
   return (
     <>
@@ -34,7 +36,7 @@ function Itemselected(props) {
                 <span> category : {props.category}</span>
               </div>
               
-              <label> choose the quantity : </label>
+              <label> Choose the quantity : </label>
               <input
                 type="number"
                 className="qty-input"
@@ -47,7 +49,7 @@ function Itemselected(props) {
                 className="add"
                 type="button"
                 aria-label="Add"
-                onClick={handleAddToCart}
+                onClick={()=>{addToCard(props.id)}}
               >
                 Add To Cart
               </button>

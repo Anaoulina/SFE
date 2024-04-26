@@ -1,0 +1,114 @@
+.cart-modal {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  
+  .modal-body-content {
+    padding: 20px;
+    
+  }
+  
+  .cartitems-format-main {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap : 8px;
+    padding: 20px 0px;
+    color: #03a49cf1;
+    font-size : 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+.cartitems-format-main hr {
+    border: none;
+    width: 800%;
+    height: 4px;
+    margin-top: 5px;
+    border-radius: 10px;
+    background: #03a49c;
+    margin-bottom: -20px;
+    padding-bottom: 0px;
+}
+
+  
+  .cartitems-format {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap : 15px;
+    font-size : 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  }
+  
+  .carticon-product-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .cartitems-quantity {
+    border: none;
+    background: white;
+    text-align: center;
+    padding-bottom: 15px;
+  }
+  
+  .cartitems-remove-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .cartitems-remove-icon i {
+    color: #f00;
+    font-size: 20px;
+    padding-bottom: 16px;
+  }
+  
+  .cartitems-remove-icon i:hover {
+    color: #f55;
+  }
+  
+.cartitems-down{
+  display: flex;
+  margin: 100px 0px;
+  align-items: center;
+}
+.cartitems-down {
+  display: flex;
+  justify-content: center; 
+  margin: 100px 0; 
+  align-items: center;
+}
+
+.cartitems-total{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right:0px;
+  gap: 40px;
+}
+
+.cartitems-total-item{
+  display : flex ;
+  justify-content: space-between;
+  padding: 0px 0px;
+}
+
+.Chekout {
+  border-radius: 10px;
+  width: 262px;
+  height: 58px;
+  outline: none;
+  border: none;
+  background: #03a49c;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+}
