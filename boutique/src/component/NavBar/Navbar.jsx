@@ -52,8 +52,9 @@ function Navbar() {
             <li className="nav-link active fw-bold " onClick={() => { setMenu("Contact") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to='/Contact' >Contact</Link> {menu === "Contact" ? <hr /> : <></>}</li>
           </ul>
           <div className="buttons">
-
-            <a className="btn" onClick={handleLoginClick}><i className="fa fa-sign-in me-1" style={{ fontSize: '20px' }}></i></a>
+              {localStorage.getItem('auth-token')?<a onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>
+                <i className="fa fa-sign-out me-1" style={{ fontSize: '20px' }}></i></a>
+              : <a className="btn" onClick={handleLoginClick}><i className="fa fa-sign-in me-1" style={{ fontSize: '20px' }}></i></a>}
             <a className="btn" href="#" onClick={() => { showHideModal() }} style={{ marginTop: '-10px' }}><i className="fa fa-shopping-cart me-1" style={{ fontSize: '20px' }}></i>
               <div className="nav-cart-count" style={{ width: '20px', height: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '-35px', marginLeft: '10px', borderRadius: '11px', fontSize: '14px', background: 'red', color: 'white' }}>
                 {getTotalCartItems()}
