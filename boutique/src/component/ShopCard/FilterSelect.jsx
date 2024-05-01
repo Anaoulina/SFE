@@ -1,5 +1,6 @@
+import React, { useContext, useState } from 'react';
 import Select from 'react-select';
-import { dataShop } from '../SliderCard/SliderData';
+import { ShopContex } from '../../Context/ShopContex';
 
 const options = [
     { value: 'tab', label: 'Tableau' },
@@ -29,15 +30,19 @@ const customStyles = {
 };
 
 const FilterSelect = ({ setFilterList }) => {
+    const { All_product } = useContext(ShopContex);
+    const [selectedOption, setSelectedOption] = useState(null);
+
     const handleChange = (selectedOption) => {
-        setFilterList(dataShop.filter((item) => item.category === selectedOption.value));
+        setSelectedOption(selectedOption);
+        setFilterList(All_product.filter((item) => item.category === selectedOption.value));
     };
-    
 
     return (
         <Select
             options={options}
-            defaultValue={{ value: '', label: 'Filter By Category' }}
+            value={selectedOption}
+            placeholder="Filter By Category"
             styles={customStyles}
             onChange={handleChange}
         />

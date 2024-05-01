@@ -139,56 +139,100 @@ const User = mongoose.model('User', {
 })
 
 // creating Endpoint for registertiong the user  
-app.post ('/signup',async(req,res)=>{
-    let check =  await User.findOne({email : req.body.email});
-    if (check){
-        return res.status(400).json({success: false,error:"existing users fond with this email"})
+app.post('/signup', async (req, res) => {
+    let check = await User.findOne({ email: req.body.email });
+    if (check) {
+        return res.status(400).json({ success: false, error: "existing users fond with this email" })
     }
     let cart = {};
-    for (let i = 0; i < 300 ; i++){
-        cart [i] = 0 ;
+    for (let i = 0; i < 300; i++) {
+        cart[i] = 0;
     }
     const user = new User({
-        name : req.body.username,
-        email : req.body.email,
-        password : req.body.password,
-        cartData : cart,
+        name: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        cartData: cart,
     })
 
     await user.save();
 
     const data = {
-        user : {
-            id  : user.id
+        user: {
+            id: user.id
         }
     }
 
-    const token =  jwt.sign(data,'secret_ecom');
-    res.json({success:true , token})
+    const token = jwt.sign(data, 'secret_ecom');
+    res.json({ success: true, token })
 })
 
 //logout 
-app.post('/login' , async(req,res)=>{
-    let user = await User.findOne({email : req.body.email});
-    if (user){
-        const passCompare = req.body.password === user.password ; 
-        if (passCompare){
+app.post('/login', async (req, res) => {
+    let user = await User.findOne({ email: req.body.email });
+    if (user) {
+        const passCompare = req.body.password === user.password;
+        if (passCompare) {
             const data = {
-                user : {
-                    id : user.id
+                user: {
+                    id: user.id
                 }
             }
-            const token = jwt.sign(data,'secret_ecom');
-            res.json({success:true,token});
+            const token = jwt.sign(data, 'secret_ecom');
+            res.json({ success: true, token });
         }
         else {
-            res.json({success:false,error:"Wrong Password"});
+            res.json({ success: false, error: "Wrong Password" });
         }
     }
     else {
-        res.json({success:false,errors:"Wrong Email"})
+        res.json({ success: false, errors: "Wrong Email" })
     }
 })
+
+//creating middelwares to fetch user
+
+const fetchUser = async (req,res,next) => {
+    const token =  req.header('auth-token');
+    if (!token) {res.status(401).send({errors:"Please authentificate using valid token"})}
+    else {
+        try {
+            const data = jwt.verify(token,'secret_ecom');
+            req.user = data.user;
+            next();
+        } catch (error) {
+            res.status(401).send({errors:"please authentificate using ...."})
+        }
+    }
+} 
+
+//creating the addtocard
+app.post('/addtocard', fetchUser, async (req, res) => {
+    console.log("added" , req.body.itemId);
+    let userData = await User.findOne({ _id: req.user.id });
+    userData.cartData[req.body.itemId] += 1;
+    await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
+    res.json({ message: "Added To Cart" });
+});
+
+//remove from card
+app.post('/removefromcart' , fetchUser, async (req, res) => {
+    console.log("removed" , req.body.itemId);
+    let userData = await User.findOne({ _id: req.user.id });
+    if( userData.cartData[req.body.itemId] >0 )
+    userData.cartData[req.body.itemId] -= 1;
+    await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
+    res.json({ message: "Removed from Cart" });
+});
+
+//get data from card
+app.post('/getcard' , fetchUser ,async (req,res)=>{
+    console.log("Get FromCart");
+    let userData = await User.findOne({_id : req.user.id});
+    res.json(userData.cartData);
+
+}) 
+
 
 
 app.listen(port, (error) => {

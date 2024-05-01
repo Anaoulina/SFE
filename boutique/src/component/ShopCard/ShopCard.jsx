@@ -1,7 +1,6 @@
 import React from 'react'
 import './../SliderCard/BestStyle.css';
 import Item from '../Items/Item';
-import { dataShop } from './../SliderCard/SliderData';
 
 function ShopCard({data}) {
     return (

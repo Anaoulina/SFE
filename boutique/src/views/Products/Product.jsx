@@ -1,13 +1,15 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState,useContext } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ShopCard from '../../component/ShopCard/ShopCard';
 import SearchBar from '../../component/ShopCard/SearchBar';
-import { dataShop } from '../../component/SliderCard/SliderData';
+import { ShopContex } from '../../Context/ShopContex';
+//import { dataShop } from '../../component/SliderCard/SliderData';
 import FilterSelect from '../../component/ShopCard/FilterSelect';
 
 function Product() {
+    const { All_product} = useContext(ShopContex);
     const [filterList, setFilterList] = useState(
-        dataShop.filter((item) => item.category === 'sofa')
+        All_product.filter((item) => item.category === 'sofa')
     );
 
     return (

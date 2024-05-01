@@ -4,7 +4,7 @@ import { ShopContex } from '../../Context/ShopContex';
 import './CartItemStyle.css';
 
 function Cart({ modalShow, setModalShow }) {
-  const { dataShop, cartItems, removefromcart , getTotalCartAmount } = useContext(ShopContex);
+  const { All_product, cartItems, removefromcart , getTotalCartAmount } = useContext(ShopContex);
   return (
     <Modal
       show={modalShow}
@@ -26,7 +26,7 @@ function Cart({ modalShow, setModalShow }) {
           <hr />
         </div>
 
-        {dataShop.map((e) => {
+        {All_product.map((e) => {
           if (cartItems[e.id] > 0) {
             return (
               <div key={e.id}>
