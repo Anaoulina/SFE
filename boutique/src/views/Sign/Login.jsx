@@ -55,10 +55,6 @@ function Login() {
             <Col md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
               <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
               <Form >
-              <div className="d-flex flex-row align-items-center mb-4">
-                  <i className="fas fa-envelope me-3" style={{ fontSize: '1.5rem' }}></i>
-                  <Form.Control name='username' value={formatData.username} onChange={changeHandler} placeholder='Your Name' type='text'  />
-                </div>
                 <div className="d-flex flex-row align-items-center mb-4">
                   <i className="fas fa-envelope me-3" style={{ fontSize: '1.5rem' }}></i>
                   <Form.Control name='email' value={formatData.email} onChange={changeHandler} placeholder='Your Email' type='email' required aria-label="Email" />

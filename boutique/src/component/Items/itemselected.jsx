@@ -10,16 +10,24 @@ function Itemselected(props) {
   //const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const {addToCard} = useContext(ShopContex);
+  const isAuthenticated = localStorage.getItem('auth-token');
+  const [showModal, setShowModal] = useState(false);
+  const handleOpenModal = () => {
+    console.log('hehihi');
+    setShowModal(true);
+
+};
+
+const handleCloseModal = () => {
+  console.log('close');
+    setShowModal(false);
+};
 
   const handleQuantityChange = (e) => {
     setQuantity(e.target.value);
   };
 
-  // const handleAddToCart = () => {
-  //   // dispatch(addToCart({ product: props, quantity: quantity }));
-  //   // toast.success('Product has been added to cart!');
-  //   console.log('khdama');
-  // };
+
 
   return (
     <>
@@ -45,6 +53,7 @@ function Itemselected(props) {
                 onChange={handleQuantityChange}
               />
             </Col>
+            {isAuthenticated ? (
             <button
                 className="add"
                 type="button"
@@ -52,7 +61,26 @@ function Itemselected(props) {
                 onClick={()=>{addToCard(props.id)}}
               >
                 Add To Cart
-              </button>
+              </button>):(
+                <div>
+                <button
+                    className="add"
+                    type="button"
+                    aria-label="Add"
+                    onClick={handleOpenModal}
+                >
+                     Add To Cart
+                </button>
+                {showModal && (
+                    <div className="modal">
+                        <div className="content">
+                            <span className="close" onClick={handleCloseModal}>&times;</span>
+                            <p>You need to authenticate to add items to the cart.</p>
+                        </div>
+                    </div>
+                )}
+            </div>
+              )}
           </Row>
           
           
