@@ -1,19 +1,20 @@
 import React, { useContext, useState } from 'react';
-import { Col, Container, Modal, Row, Toast } from 'react-bootstrap'
-import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
+import { Col, Container, Row } from 'react-bootstrap'
+// import { useDispatch } from 'react-redux';
+// import { toast } from 'react-toastify';
 //import { addToCart } from '../../actions/cartActions';
 import './itemselecte.css';
 import { ShopContex } from '../../Context/ShopContex';
+import { useNavigate } from 'react-router-dom';
 
 function Itemselected(props) {
-  //const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const {addToCard} = useContext(ShopContex);
   const isAuthenticated = localStorage.getItem('auth-token');
   const [showModal, setShowModal] = useState(false);
+  
   const handleOpenModal = () => {
-    console.log('hehihi');
+    console.log('open');
     setShowModal(true);
 
 };
@@ -27,7 +28,10 @@ const handleCloseModal = () => {
     setQuantity(e.target.value);
   };
 
-
+  const navigate = useNavigate();
+  const gotoForm = () =>{
+    navigate(`/comdForm/${props.id}`);
+  }
 
   return (
     <>
@@ -58,9 +62,9 @@ const handleCloseModal = () => {
                 className="add"
                 type="button"
                 aria-label="Add"
-                onClick={()=>{addToCard(props.id)}}
+                onClick={()=>{gotoForm()}}
               >
-                Add To Cart
+                Form Commend
               </button>):(
                 <div>
                 <button

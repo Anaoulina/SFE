@@ -1,11 +1,7 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-//import { dataShop } from '../../component/SliderCard/SliderData';
-//import ShopCard from '../../component/ShopCard/ShopCard';
-//import { Container } from 'react-bootstrap';
 import "./../../component/SliderCard/prodcatestyle.css";
 import { ShopContex } from '../../Context/ShopContex';
-// import Item from '../../component/Items/Item';
 import Itemselected from '../../component/Items/itemselected';
 
 function Prduitcard() {
