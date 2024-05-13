@@ -9,7 +9,7 @@ import FilterSelect from '../../component/ShopCard/FilterSelect';
 function Product() {
     const { All_product} = useContext(ShopContex);
     const [filterList, setFilterList] = useState(
-        All_product.filter((item) => item.category === 'sofa')
+        All_product.filter((item) => item.category === 'Painting')
     );
 
     return (

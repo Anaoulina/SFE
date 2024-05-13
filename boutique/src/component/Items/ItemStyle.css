@@ -1,10 +1,20 @@
 .item {
-    width: 250px;
+    width: 255px;
     position: relative;
+    box-shadow: #374151;
+    border-radius: 50px;
 }
 
 .item p {
     margin: 6px 0px;
+    font-style: oblique;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
+    
+}
+
+.container .description  {
+    font-family: 'Times New Roman', Times, serif;
 }
 .container{
     /* display: flex; */
@@ -41,14 +51,14 @@
     background-color: #03a49c9a;
     color: white;
     border: none;
-    padding: 0px;
+    padding: 5px;
     border-radius: 5px;
-    right: 10px;
+    right: 20px;
     bottom: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-size: 40px;
+    font-size: 20px;
     position: absolute;
 }
 

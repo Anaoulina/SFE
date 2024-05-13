@@ -12,17 +12,20 @@ function Item(props) {
     };
     return (
         <>
-            <div className='item' >
+            <div className='item' /*style={{ border: '2px solid gray' }}*/ >
 
                 <img src={props.image} style={{ height: '250px', width: '250px' }} alt="notFound" />
-                <p>{props.name}</p>
-                <div className="container">
+                <center><p>{props.name}</p></center>
+                <div className="container" >
+
+                
+                {/* <center><p className='description'>{props.descreption}</p></center> */}
                     <div className="item-prices">
                         <div className="item-price-new">
-                            {props.new_price}
+                            {props.new_price} DH
                         </div>
                         <div className="item-price-old">
-                            {props.old_price}
+                            {props.old_price} DH
                         </div>
                     </div>
                     <div className="item-prices">
@@ -32,8 +35,8 @@ function Item(props) {
                             className="add"
                             onClick={() => click()}
                         >
-                            <IoIosAddCircle />
-
+                            {/* <IoIosAddCircle /> */}
+                            More details
                         </button>
                     </div>
                 </div>

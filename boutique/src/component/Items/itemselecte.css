@@ -6,15 +6,24 @@
   max-width: 100%;
   height: auto;
 }
+.product-page h1{
+  color: #048a84;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 50px;
+}
 
-.product-page h2 {
+
+.product-page h2  {
+  
   margin-top: 20px;
   font-size: 24px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .product-page .info {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .product-page .price {
@@ -24,7 +33,7 @@
 
 .product-page p {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 25px;
 }
 
 .product-page .qty-input {
@@ -33,15 +42,15 @@
   padding: 5px;
   font-size: 16px;
   border-radius: 10px;
-  border-color: #007bff;
+  border-color: #048a84;
 }
 
-.product-page .add {
+ .adde {
   margin-top: 10px;
   margin-bottom: 30%;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #03a49cf1;
+  background-color: #048a84;
   color: white;
   border: none;
   border-radius: 10px;
@@ -51,10 +60,23 @@
   margin-left: auto;
   margin-right: auto;
 }
-
+.addproduct {
+margin-top: 10px;
+margin-bottom: 30%;
+padding: 10px 20px;
+font-size: 16px;
+background-color: #048a84;
+color: white;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+width: 50%;
+display: block;
+margin-left: auto;
+margin-right: auto;}
 
 .product-page .add:hover {
-  color: #03a49cf1;
+  color: #048a84;
   background-color: white;
 }
 

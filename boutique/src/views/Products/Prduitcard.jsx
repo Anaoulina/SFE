@@ -19,7 +19,20 @@ function Prduitcard() {
             <div className="banner">
             <h2 className="titre" title={SelectedProduct?.name}></h2>
             {/* <Item id={SelectedProduct.id} name={SelectedProduct.name} image={SelectedProduct.image} new_price={SelectedProduct.new_price} old_price={SelectedProduct.old_price}/> */}
-            <Itemselected id={SelectedProduct.id} name={SelectedProduct.name} image={SelectedProduct.image} new_price={SelectedProduct.new_price} old_price={SelectedProduct.old_price} personnaliser = {SelectedProduct.personnaliser} category = {SelectedProduct.category} />
+            <Itemselected 
+            id={SelectedProduct.id}
+            name={SelectedProduct.name}
+            image={SelectedProduct.image}
+            new_price={SelectedProduct.new_price}
+            old_price={SelectedProduct.old_price}
+            //personnaliser = {SelectedProduct.personnaliser}
+            available={SelectedProduct.available}
+            category = {SelectedProduct.category}
+            descreption = {SelectedProduct.descreption}
+            height = {SelectedProduct.height}
+            width = {SelectedProduct.width}
+            personalised = {SelectedProduct.personalised}
+            />
             </div>
            
             

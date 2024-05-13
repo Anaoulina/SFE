@@ -3,8 +3,12 @@ import Select from 'react-select';
 import { ShopContex } from '../../Context/ShopContex';
 
 const options = [
-    { value: 'tab', label: 'Tableau' },
-    { value: 'sofa', label: 'Sofa' },
+    { value: 'Painting', label: 'Painting' },
+    { value: 'paper', label: 'Paper Paint' },
+    { value: 'Adss', label: 'Advertise' },
+    { value: 'house', label: 'Housing items' },
+    { value: 'clothes', label: 'Clothes' },
+    { value: 'Access', label: 'Accessoire' },
 ];
 
 const customStyles = {

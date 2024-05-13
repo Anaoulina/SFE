@@ -9,7 +9,8 @@ function Navbar() {
   const [menu, setMenu] = useState("Home");
   const [modalShow, setModalShow] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const { getTotalCartItems } = useContext(ShopContex);
+  //const { getTotalCartItems } = useContext(ShopContex);
+  const { All_product, All_commandes, cartItems, removefromcart, getTotalCartAmount } = useContext(ShopContex);
   const navigate = useNavigate();
 
   function showHideModal() {
@@ -57,7 +58,7 @@ function Navbar() {
               : <a className="btn" onClick={handleLoginClick}><i className="fa fa-sign-in me-1" style={{ fontSize: '20px' }}></i></a>}
             <a className="btn" href="#" onClick={() => { showHideModal() }} style={{ marginTop: '-10px' }}><i className="fa fa-shopping-cart me-1" style={{ fontSize: '20px' }}></i>
               <div className="nav-cart-count" style={{ width: '20px', height: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '-35px', marginLeft: '10px', borderRadius: '11px', fontSize: '14px', background: 'red', color: 'white' }}>
-                {getTotalCartItems()}
+                {cartItems.length}
               </div>
             </a>
           </div>

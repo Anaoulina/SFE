@@ -9,6 +9,7 @@ import Signup from './views/Sign/Signup.jsx';
 import Prduitcard from './views/Products/Prduitcard.jsx';
 import Login from './views/Sign/Login.jsx';
 import FormCmd from './component/Items/formulairecmd.jsx'
+import Chekout from './component/CartView/chekout.jsx';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path='/produit/:id' element={<Prduitcard/>}/>
           <Route path='/login' element = {<Login/>}/>
           <Route path='/comdForm/:id' element = {<FormCmd/>} />
+          <Route path='/chekout' element = {<Chekout/>}/>
         </Routes>
       </BrowserRouter>
 
