@@ -1,0 +1,45 @@
+span {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.cont{
+    box-sizing: border-box;
+    width: 125%;
+    max-width: 2500px;
+    padding: 50px 30px ;
+    margin : 10px 80px ;
+    border-radius: 6px;
+    background: white; 
+}
+
+.item-espace{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* gap: 0px  ; */
+}
+
+.item-item{
+    width: 50%;
+    font-size: 16px;
+}
+.cadre{
+    
+    border: 3px solid #c3c3c3;
+    border-radius: 50px;
+    padding: 30px;
+    margin: 20px;
+    /* padding: 200px; */
+}
+
+
+@media(max-width : 800px){
+    .add-product{
+        width: auto;
+        padding: 30px;
+        margin: 20px;
+    }
+}
+

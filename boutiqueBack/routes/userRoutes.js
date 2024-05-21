@@ -9,7 +9,7 @@ router.post('/login', userController.login);
 router.post('/addtocard', fetchUser, userController.addToCart);
 router.post('/removefromcart',fetchUser, userController.removeFromCart);
 router.post('/getcard',fetchUser, userController.getCartData);
-router.post('/addtocommend',userController.addCommend);
+
 
 
 

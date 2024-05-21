@@ -1,56 +1,84 @@
-import React, { useContext } from 'react';
-import { Modal } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
 import { ShopContex } from '../../Context/ShopContex';
-import { Link } from 'react-router-dom';
+import Modal from './modal';
+import Checkout from './chekout';
 import './CartItemStyle.css';
+import Alert from '../../Context/alert'
 
-function Cart({ modalShow, setModalShow }) {
-    const { cartItems, removefromcart, getTotalCartAmount, createCommand } = useContext(ShopContex);
+function Cart() {
+    const { cartItems, getTotalCartAmount } = useContext(ShopContex);
     const isAuthenticated = localStorage.getItem('auth-token');
-    //const id = cartItems[0].user._id ;
-    
+    const [showModal, setShowModal] = useState(false);
+  const [alertState, setAlertState] = useState({ type: '', message: '' });
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
+    const removefromcart = async (itemId) => {
+        await fetch('http://localhost:4000/removeCommand', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: itemId }),
+        }).then(() => {
+            setAlertState({ type: 'success', message: 'Item removed from cart' });
+        }).catch((error) => {
+            setAlertState({ type: 'error', message: 'Failed to remove item from cart' });
+        });
+    };
+
+    const handleShowModal = () => {
+        setShowModal(true);
+    };
 
     return (
-        <Modal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            className="cart-modal"
-            dialogClassName="custom-modal"
-        >
-            <Modal.Header closeButton>
-                <Modal.Title>Your Cart</Modal.Title>
-            </Modal.Header>
+        <div className='teste'>
+            {alertState.message && <Alert type={alertState.type} message={alertState.message} />}
+            <h1></h1>
+            <div className="sec">
+                <h2 className="titre">Your Cart</h2>
+                <hr />
+            </div>
             {isAuthenticated ? (
-                <Modal.Body className="modal-body-content">
-                    <div className="cartitems-format-main">
-                        <p>Products</p>
-                        <p>Title</p>
-                        <p>Price</p>
-                        <p>Quantity</p>
-                        <p>Total</p>
-                        <p>Remove</p>
-                        <hr />
-                    </div>
-                    {cartItems.map(e => (
-                        <div key={e.produit.id}>
-                            <div className="cartitems-format">
-                                <img src={e.produit.image} alt="" className="carticon-product-icon" />
-                                <p>{e.produit.name}</p>
-                                <p>{e.produit.new_price} DH</p>
-                                <button className="cartitems-quantity">1</button>
-                                <p>{e.produit.new_price * 1} DH</p>
-                                <button
-                                    className="cartitems-remove-icon"
-                                    onClick={() => {
-                                        removefromcart(e.id);
-                                    }}
-                                >
-                                    <i className="fa fa-trash me-1" style={{ fontSize: '20px' }}></i>
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-
+                <div className='diva'>
+                    <center>
+                        <table className="cart-table">
+                            <thead>
+                                <tr>
+                                    <th>Products</th>
+                                    <th>Title</th>
+                                    <th>Original Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {cartItems.map(e => (
+                                    <tr key={e.produit.id}>
+                                        <td><img src={e.produit.image} alt="" className="carticon-product-icon" /></td>
+                                        <td>{e.produit.name}</td>
+                                        <td>{e.produit.new_price} DH</td>
+                                        <td >{e.quantity}</td>
+                                        <td>{e.price * 1} DH</td>
+                                        <td>
+                                            <button
+                                                className="cartitems-remove-icon"
+                                                onClick={() => {
+                                                    removefromcart(e.id);
+                                                }}
+                                            >
+                                                <i className="fa fa-trash me-1"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </center>
                     <div className="cartitems-down">
                         <div className="cartitems-total">
                             <h4>Cart Totals</h4>
@@ -69,23 +97,26 @@ function Cart({ modalShow, setModalShow }) {
                                     <h3>Total</h3>
                                     <h3>{getTotalCartAmount()} DH</h3>
                                 </div>
+                                <h1 ></h1>
+                                <center>
+                        <div >
+
+                            <button onClick={handleShowModal} className="Chekout">Proceed To Checkout</button>
+
+                        </div>
+                    </center>
                             </div>
                         </div>
                     </div>
-                </Modal.Body>
-            ) : (
-                <Modal.Body>
-                    <p>Please login to view your cart.</p>
-                </Modal.Body>
-            )}
-            {isAuthenticated && (
-                <Modal.Footer>
                     
-                    <Link to="/chekout" className='Chekout' >Proceed To Checkout</Link>
-                    {/* <button onClick={handleCheckout} className='Chekout'>Proceed To Checkout </button> */}
-                </Modal.Footer>
+                    <Modal show={showModal} handleClose={handleCloseModal}>
+                        <Checkout />
+                    </Modal>
+                </div>
+            ) : (
+                <p>Please login to view your cart.</p>
             )}
-        </Modal>
+        </div>
     );
 }
 

@@ -254,6 +254,9 @@ const multer = require("multer");
 const path = require("path");
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
+const commandesRoutes = require('./routes/commandesRoutes');
+const commandeslisteRoutes = require('./routes/CommandeslisteRoutes');
+
 
 app.use(express.json());
 app.use(cors());
@@ -300,6 +303,8 @@ app.post("/uploadcomd", uploadcmd.single('commend'), (req, res) => {
 
 app.use('/', productRoutes);
 app.use('/', userRoutes);
+app.use('/',commandesRoutes);
+app.use('/',commandeslisteRoutes);
 
 app.get("/", (req, res) => {
     res.send("Express App is Running")

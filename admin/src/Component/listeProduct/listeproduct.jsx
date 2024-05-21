@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Listeproduct.css';
 import supp from '../../assets/supp.png'
+import edite from '../../assets/edite.png'
+import { Link } from 'react-router-dom'
+
 
 function Listeproduct() {
 
@@ -38,8 +41,10 @@ function Listeproduct() {
                 <p>Title</p>
                 <p>Old Price</p>
                 <p>New Price</p>
+                <p>Availibale</p>
                 <p>Category</p>
                 <p>Remove</p>
+                <p>Edite</p>
             </div>
             <div className="listeproduct-allproducts">
                 {allproducts.map((product, index) => {
@@ -49,8 +54,13 @@ function Listeproduct() {
                             <p>{product.name}</p>
                             <p>{product.old_price} DH</p>
                             <p>{product.new_price} DH</p>
+                            <p>{product.available}</p>
                             <p>{product.category}</p>
                             <img onClick={() => { remove_product(product.id) }} className='listproduct-remove-icon' src={supp} alt="404" />
+                            <Link to={`/editeproduct/${product.id}`} style={{ textDecoration: "none" }}>
+                                <img className='listproduct-remove-icon' src={edite} alt="404" />
+                            </Link>
+
                         </div>
                     );
                 })}

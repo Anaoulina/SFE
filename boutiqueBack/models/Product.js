@@ -31,10 +31,29 @@ const Product = mongoose.model("Product", {
     },
     available: {
         type: Number,
-        default: true,
+        // default: true,
     },
     descreption : {
         type : String , 
+    }, 
+    height : {
+        type  : Number , 
+        required : true, 
+    },
+    width : {
+        type : Number , 
+        required : true ,
+    },
+    sales : {
+        type : Number , 
+        default : 0 ,
+    },
+    souscategorie : {
+        type : String ,   
+    },
+    personalised : {
+        type : Boolean ,
+        default : false ,
     }
 });
 

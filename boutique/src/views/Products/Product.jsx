@@ -5,14 +5,19 @@ import SearchBar from '../../component/ShopCard/SearchBar';
 import { ShopContex } from '../../Context/ShopContex';
 //import { dataShop } from '../../component/SliderCard/SliderData';
 import FilterSelect from '../../component/ShopCard/FilterSelect';
+import { useParams } from 'react-router-dom';
+import Footer from '../../component/Footer/footer';
+
 
 function Product() {
+    const { category } = useParams();
     const { All_product} = useContext(ShopContex);
     const [filterList, setFilterList] = useState(
-        All_product.filter((item) => item.category === 'Painting')
+        All_product.filter((item) => item.category === category)
     );
 
     return (
+    <>
         <Fragment>
             <section className="filter-bar">
                 <Container style={{ marginTop: '50px' }} className="filter-bar-container">
@@ -30,6 +35,9 @@ function Product() {
                 </Container>
             </section>
         </Fragment>
+
+        <Footer/>
+        </>
     );
 }
 

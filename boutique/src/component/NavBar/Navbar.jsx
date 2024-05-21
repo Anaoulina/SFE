@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './navbarstyle.css';
 import { Link, useNavigate } from 'react-router-dom';
-import Cart from '../CartView/cart';
+// import Cart from '../CartView/cart';
 import { ShopContex } from '../../Context/ShopContex';
 
 function Navbar() {
@@ -48,7 +48,7 @@ function Navbar() {
         <div className={`collapse navbar-collapse ${isCollapsed ? '' : 'show'}`} id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             <li className="nav-link active fw-bold " onClick={() => { setMenu("Home") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to='/'>Home </Link> {menu === "Home" ? <hr /> : <></>}</li>
-            <li className="nav-link active fw-bold " onClick={() => { setMenu("Shop") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to='/Shop' >Shop</Link> {menu === "Shop" ? <hr /> : <></>}</li>
+            <li className="nav-link active fw-bold " onClick={() => { setMenu("Shop") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to={`/Shop/Painting`} >Shop</Link> {menu === "Shop" ? <hr /> : <></>}</li>
             <li className="nav-link active fw-bold " onClick={() => { setMenu("About") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to='/About' >About </Link>{menu === "About" ? <hr /> : <></>}</li>
             <li className="nav-link active fw-bold " onClick={() => { setMenu("Contact") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to='/Contact' >Contact</Link> {menu === "Contact" ? <hr /> : <></>}</li>
           </ul>
@@ -56,7 +56,7 @@ function Navbar() {
               {localStorage.getItem('auth-token')?<a onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>
                 <i className="fa fa-sign-out me-1" style={{ fontSize: '20px' }}></i></a>
               : <a className="btn" onClick={handleLoginClick}><i className="fa fa-sign-in me-1" style={{ fontSize: '20px' }}></i></a>}
-            <a className="btn" href="#" onClick={() => { showHideModal() }} style={{ marginTop: '-10px' }}><i className="fa fa-shopping-cart me-1" style={{ fontSize: '20px' }}></i>
+            <a className="btn" href="#" onClick={() => { setMenu("cart") }} style={{ marginTop: '-10px' }}><Link style={{ textDecoration: 'none', color: 'black' }} to='/cart' ><i className="fa fa-shopping-cart me-1" style={{ fontSize: '20px' }}></i></Link>
               <div className="nav-cart-count" style={{ width: '20px', height: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '-35px', marginLeft: '10px', borderRadius: '11px', fontSize: '14px', background: 'red', color: 'white' }}>
                 {cartItems.length}
               </div>
@@ -64,7 +64,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <Cart modalShow={modalShow} setModalShow={setModalShow} />
+      {/* <Cart modalShow={modalShow} setModalShow={setModalShow} /> */}
     </nav>
   );
 }

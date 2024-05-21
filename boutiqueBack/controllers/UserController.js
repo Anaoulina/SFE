@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const Commend = require('../models/commends');
+const Commands = require('../models/Commands');
 const jwt = require("jsonwebtoken");
 
 
@@ -53,32 +53,8 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.addCommend = async (req , res)=> {
-    let commends =  await Commend.find({});
-    let id ; 
-    if (commends.lenght > 0){
-        let last_commend_array = commends.slice(-1);
-        let last_commend = last_commend_array[0];
-        id = last_commend.id + 1 ;
-    }
-    else {
-        id = 1 ;
-    }
-    const commend = new Commend ({
-        id : id ,
-        produit : req.body.produit ,
-        imagePersonalisade : req.body.imagePersonalisade,
-        price : req.body.price ,
-        height : req.body.height, 
-    });
-    console.log(commend);
-    await commend.save();
-    console.log('Saved');
-    res.json({
-        success : true ,
-        name : req.body.name
-    })
-};
+
+
 
 exports.addToCart = async (req, res) => {
     try {
@@ -86,7 +62,6 @@ exports.addToCart = async (req, res) => {
         userData.cartData[req.body.itemId] += 1;
         await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
         res.json({ message: "Added To Cart" });
-        console.log(" helloo" +  userData.cartData);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -109,6 +84,7 @@ exports.removeFromCart = async (req, res) => {
 
 exports.getCartData = async (req, res) => {
     try {
+        
         let userData = await User.findOne({ _id: req.user.id });
         res.json(userData.cartData);
     } catch (error) {
