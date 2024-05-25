@@ -25,24 +25,24 @@ function ShopContexProvider(props) {
                 setAlert({ type: 'error', message: 'Failed to fetch commands' });
             });
 
-        if (localStorage.getItem('auth-token')) {
-            fetch('http://localhost:4000/commands/', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({}),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    setCartItems(data);
+            if (localStorage.getItem('auth-token')) {
+                fetch('http://localhost:4000/commands/', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'auth-token': localStorage.getItem('auth-token'),
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ done: false }), // Send a filter to the backend
                 })
-                .catch((error) => {
-                    setAlert({ type: 'error', message: 'Failed to fetch cart items' });
-                });
-        }
+                    .then((response) => response.json())
+                    .then((data) => {
+                        setCartItems(data);
+                    })
+                    .catch((error) => {
+                        setAlert({ type: 'error', message: 'Failed to fetch cart items' });
+                    });
+            }
     }, []);
 
     const createCommand = async (commandData) => {

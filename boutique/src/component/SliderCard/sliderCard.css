@@ -40,6 +40,6 @@
 
 .homeSlide .box img {
     width: 100%;
-    max-height: 300px;
+    max-height: 350px;
     object-fit: contain;
 }

@@ -10,6 +10,9 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useNavigate } from 'react-router-dom';
+import image from '../../Image/json/hello.json'
+import girl from '../../Image/json/girl.json'
+import Lottie from "lottie-react"
 
 function Signup() {
   const navigate = useNavigate();
@@ -81,16 +84,17 @@ function Signup() {
                 </div>
 
 
-                <Button onClick={login} className='mb-4' size='lg' style={{ backgroundColor: '#03a49c', border: ' none', width: '100%' }}>
+                <Button onClick={login} className='mb-4' size='lg' style={{ backgroundColor: 'black', border: ' none', width: '100%' }}>
                   Register
                 </Button>
               </Form>
 
-              <p className="mb-0">You already have an account? <a href="#" onClick={handelSignupClick}>Login</a></p>
+              <p className="mb-0" >You already have an account? <a href="#" onClick={handelSignupClick}>Login</a></p>
             </Col>
 
             <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-              <Card.Img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp' fluid />
+            <Lottie animationData={image}></Lottie>
+            <Lottie animationData={girl}></Lottie>
             </Col>
 
           </Row>

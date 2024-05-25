@@ -6,12 +6,22 @@ span {
 
 .cont{
     box-sizing: border-box;
-    width: 125%;
-    max-width: 2500px;
+    /* width: 125%; */
+    max-width: 2050px;
     padding: 50px 30px ;
     margin : 10px 80px ;
     border-radius: 6px;
     background: white; 
+}
+
+.button{
+    cursor: pointer;
+    border-radius: 20px;
+    margin: 2px;
+    width: 200px;
+    font-size: 15px;
+   color: #f2f0f0;
+    background-color:#454545 ;
 }
 
 .item-espace{

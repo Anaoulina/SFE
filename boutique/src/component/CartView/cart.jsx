@@ -49,6 +49,7 @@ function Cart() {
                             <thead>
                                 <tr>
                                     <th>Products</th>
+                                    <th>Picture</th>
                                     <th>Title</th>
                                     <th>Original Price</th>
                                     <th>Quantity</th>
@@ -59,7 +60,9 @@ function Cart() {
                             <tbody>
                                 {cartItems.map(e => (
                                     <tr key={e.produit.id}>
-                                        <td><img src={e.produit.image} alt="" className="carticon-product-icon" /></td>
+                                        <td><img src={e.produit.image} alt="" className="carticon-product-icon" />
+                                        </td>
+                                        <td> <img src={e.imagePersonalisade} alt="" className="carticon-product-icon" /></td>
                                         <td>{e.produit.name}</td>
                                         <td>{e.produit.new_price} DH</td>
                                         <td >{e.quantity}</td>
@@ -114,7 +117,9 @@ function Cart() {
                     </Modal>
                 </div>
             ) : (
-                <p>Please login to view your cart.</p>
+                <center>
+                <p style={ {fontSize : "50px"}}>Please login to view your cart.</p>
+                </center>
             )}
         </div>
     );

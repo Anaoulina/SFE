@@ -28,6 +28,7 @@ exports.addCommend = async (req, res) => {
         user: userData,
         Width : req.body.Width,
         price : req.body.price,
+        done : false ,
         quantity : req.body.quantity ,
         
     });
@@ -41,16 +42,16 @@ exports.addCommend = async (req, res) => {
 };
 
 exports.getCommandsByUserId = async (req, res) => {
-    const userId = new mongoose.Types.ObjectId(req.user.id); 
+    const userId = new mongoose.Types.ObjectId(req.user.id);
     try {
-        const commands = await Commands.find({ "user._id": userId });
-        //console.log(commands.length);
+        const commands = await Commands.find({ "user._id": userId, done: false });
         res.send(commands);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
 
 exports.getCommandsById = async (req, res) => {
     //const userId = new mongoose.Types.ObjectId(req.user.id); 
@@ -71,4 +72,21 @@ exports.removeCommandes = async (req,res) => {
     res.json({
         success : true , 
     })
+};
+
+exports.editedonecommend = async (req, res) => {
+    try {
+        const command = await Commands.findById(req.params.id);
+        if (!command) {
+            return res.status(404).send();
+        }
+        console.log('Request body:', req.body);
+        command.done = req.body.done;
+
+        await command.save();
+        res.send(command);
+    } catch (error) {
+        console.error('Error updating command:', error);
+        res.status(400).send(error);
+    }
 };

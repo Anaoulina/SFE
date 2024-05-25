@@ -4,6 +4,11 @@ import { Col, Container, Row } from "react-bootstrap";
 import { serviceData } from "./SliderData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faCreditCard, faLock, faHandshake } from "@fortawesome/free-solid-svg-icons";
+import shopping from '../../Image/json/shoppingicon.json'
+import carticon from '../../Image/json/carticon.json'
+import granteee from '../../Image/json/granteee.json'
+import security from '../../Image/json/security.json'
+import Lottie from "lottie-react"
 
 const Service = () => {
   return (
@@ -14,16 +19,16 @@ const Service = () => {
             let iconComponent;
             switch (val.icon) {
               case "shopping-cart":
-                iconComponent = <FontAwesomeIcon icon={faShoppingCart} />;
+                iconComponent = <Lottie animationData={shopping}></Lottie>;
                 break;
               case "credit-card":
-                iconComponent = <FontAwesomeIcon icon={faCreditCard} />;
+                iconComponent = <Lottie animationData={carticon}></Lottie>;
                 break;
               case "lock":
-                iconComponent = <FontAwesomeIcon icon={faLock} />;
+                iconComponent = <Lottie animationData={security}></Lottie>;
                 break;
               case "handshake":
-                iconComponent = <FontAwesomeIcon icon={faHandshake} />;
+                iconComponent = <Lottie animationData={granteee}></Lottie>;
                 break;
               default:
                 iconComponent = null;

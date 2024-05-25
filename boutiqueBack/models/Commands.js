@@ -33,6 +33,9 @@ const Commands = mongoose.model("Commands" , {
     Width : {
         type : Number ,
     },
+    done : {
+        type : Boolean,
+    },
     
     
 

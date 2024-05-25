@@ -20,12 +20,12 @@ function Bestsiller() {
 
     return (
         <>
-            <div className='best'>
+            <div className='best' >
                 <div className="sec">
                     <h1>Best Sales</h1>
                     <hr />
                 </div>
-                <div className="container">
+                <div className="container" >
                     <div className="row">
                         {topSales.map((item, i) => (
                             <div className="col-md-3" key={i}>

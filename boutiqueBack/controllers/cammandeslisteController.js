@@ -1,7 +1,7 @@
 const Commandliste = require('../models/Commendliste');
 const User = require('../models/User');
 
-// Controller function to create a new command
+
 exports.createCommand = async (req, res) => {
     let commends = await Commandliste.find({});
     let user = await User.findById(req.body.iduser)
@@ -31,7 +31,7 @@ exports.createCommand = async (req, res) => {
     }
 };
 
-// Controller function to get all commands
+
 exports.getCommands = async (req, res) => {
     try {
         const commands = await Commandliste.find();
@@ -42,7 +42,7 @@ exports.getCommands = async (req, res) => {
     }
 };
 
-// Controller function to get a command by ID
+
 exports.getCommandById = async (req, res) => {
     try {
         const command = await Commandliste.findById(req.params.id);
@@ -55,20 +55,25 @@ exports.getCommandById = async (req, res) => {
     }
 };
 
-// Controller function to update a command by ID
 exports.updateCommand = async (req, res) => {
     try {
-        const command = await Commandliste.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const command = await Commandliste.findById(req.params.id);
         if (!command) {
             return res.status(404).send();
         }
+        
+        // Only update the 'done' field
+        command.done = req.body.done;
+
+        await command.save();
         res.send(command);
     } catch (error) {
         res.status(400).send(error);
     }
 };
 
-// Controller function to delete a command by ID
+
+
 exports.deleteCommand = async (req, res) => {
     try {
         const command = await Commandliste.findByIdAndDelete(req.params.id);

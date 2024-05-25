@@ -1,8 +1,9 @@
 .item {
     width: 255px;
     position: relative;
-    box-shadow: #374151;
-    border-radius: 50px;
+    box-shadow: #0b0b0b;
+    border-radius: 150px;
+    margin: 30px;
 }
 
 .item p {
@@ -48,23 +49,25 @@
 }
 
 .add {
-    background-color: #03a49c9a;
+    background-color: #0000009b;
     color: white;
     border: none;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 15px;
     right: 20px;
     bottom: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 15px;
+    font-family :'Times New Roman', Times, serif;
     position: absolute;
 }
 
 .add:hover {
-    background-color: white;
-    color: #03a49c9a;
+    background-color: rgba(206, 206, 206, 0.664);
+    color: #000000;
+    font-size: 17px;
 }
 
 .icon {

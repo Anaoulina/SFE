@@ -6,13 +6,13 @@ import './itemselecte.css';
 import Footer from '../Footer/footer';
 import { ShopContex } from '../../Context/ShopContex';
 import { useNavigate } from 'react-router-dom';
-import Alert from '../../Context/alert'
+import Alert from '../../Context/alert';
 
 function Itemselected(props) {
   const { All_product, addToCard } = useContext(ShopContex);
   const isAuthenticated = localStorage.getItem('auth-token');
   const [showModal, setShowModal] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [alertState, setAlertState] = useState({ type: '', message: '' });
 
   const [filterList, setFilterList] = useState(
@@ -28,9 +28,8 @@ function Itemselected(props) {
     price: props.new_price,
     height: props.height,
     width: props.width,
-    imagePersonalisade: "",
-    quantity: "1",
-
+    imagePersonalisade: '',
+    quantity: '1',
   });
 
   useEffect(() => {
@@ -47,7 +46,7 @@ function Itemselected(props) {
         price: newPrice.toString(),
       }));
     }
-  }, [formData.width, formData.height, props.new_price]);
+  }, [formData.width, formData.height, formData.quantity, props.new_price]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,43 +57,52 @@ function Itemselected(props) {
   };
 
   const handleSubmit = async () => {
-    let responseData;
-    let formCommend = new FormData();
-    formCommend.append('commend', image);
-
     if (image) {
-      await fetch('http://localhost:4000/uploadcomd', {
+      try {
+        const formCommend = new FormData();
+        formCommend.append('commend', image);
+
+        const response = await fetch('http://localhost:4000/uploadcomd', {
+          method: 'POST',
+          body: formCommend,
+        });
+        const responseData = await response.json();
+
+        if (responseData.success) {
+          const updatedFormData = {
+            ...formData,
+            imagePersonalisade: responseData.image_url,
+          };
+
+          await submitFormData(updatedFormData);
+        }
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    } else {
+      await submitFormData(formData);
+    }
+  };
+
+  const submitFormData = async (data) => {
+    try {
+      const response = await fetch('http://localhost:4000/addtocommend', {
         method: 'POST',
         headers: {
-          Accept: 'application/json',
+          'auth-token': localStorage.getItem('auth-token'),
+          'Content-Type': 'application/json',
         },
-        body: formCommend,
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          responseData = data;
-          setFormData((prevData) => ({
-            ...prevData,
-            imagePersonalisade: responseData.image_url,
-          }));
-        });
-    }
-
-    console.log("Form submitted with data:", formData);
-    await fetch('http://localhost:4000/addtocommend', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'auth-token': `${localStorage.getItem('auth-token')}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        addToCard(data.id);
-        data.success ? setAlertState({ type: 'success', message: "Commend Added To cart" }) : setAlertState({ type: 'error', message: "Failed" });
+        body: JSON.stringify(data),
       });
+      const responseData = await response.json();
+
+      addToCard(responseData.id);
+      responseData.success
+        ? setAlertState({ type: 'success', message: 'Commend Added To Cart' })
+        : setAlertState({ type: 'error', message: 'Failed' });
+    } catch (error) {
+      console.error('Error submitting form data:', error);
+    }
   };
 
   const handleOpenModal = () => {
@@ -111,10 +119,9 @@ function Itemselected(props) {
     <>
       <section className="product-page">
         <Container>
-
           {alertState.message && <Alert type={alertState.type} message={alertState.message} />}
           <div className="sec">
-            <h2 className="titre" style={{ fontSize: "50px" }}> Product detail</h2>
+            <h2 className="titre" style={{ fontSize: '50px' }}> Product detail</h2>
             <hr />
           </div>
           <Row className="justify-content-center">
@@ -123,15 +130,22 @@ function Itemselected(props) {
             </Col>
 
             <Col md={6}>
-
               <div className="info">
-                <center> <h2><span>Name :</span> {props.name}</h2>
-                  <p><span>Description : </span>{props.descreption}</p></center>
-                <p>Price : <span className="price">{props.new_price} DH </span>
-                  <div style={{ marginLeft: "50px" }} className="item-price-old">  {props.old_price} DH </div></p>
-                <p>Width : <span className="price">{props.width} cm </span>
-                  Height <span className="price">{props.height} cm </span></p>
-                <p> Availibale :  <span className="price">{props.available}</span> </p>
+                <center>
+                  <h2><span>Name :</span> {props.name}</h2>
+                  <p><span>Description : </span>{props.descreption}</p>
+                </center>
+                <p>
+                  Price : <span className="price">{props.new_price} DH </span>
+                  <div style={{ marginLeft: "50px" }} className="item-price-old">
+                    {props.old_price} DH
+                  </div>
+                </p>
+                <p>
+                  Width : <span className="price">{props.width} cm </span>
+                  Height <span className="price">{props.height} cm </span>
+                </p>
+                <p>Availibale :  <span className="price">{props.available}</span></p>
               </div>
             </Col>
 
@@ -174,23 +188,22 @@ function Itemselected(props) {
                           </div>
                         </div>
                       </>
-                    ) : (<>
-                      <div className="addproduct-itemfield">
-                        <p>Quantity</p>
-                        <input value={formData.quantity} onChange={handleChange} type="number" name='quantity' />
-                      </div>
-                      <p>Picture that you want to print:</p>
-                      <label htmlFor="file-input">
-                        <img src={image ? URL.createObjectURL(image) : upload} style={{ width: "200px", height: "200px" }} className='addproduct-thumbnail-img' alt="404" />
-                      </label>
-
-                    </>)}
-
-
+                    ) : (
+                      <>
+                        <div className="addproduct-itemfield">
+                          <p>Quantity</p>
+                          <input value={formData.quantity} onChange={handleChange} type="number" name='quantity' />
+                        </div>
+                        <p>Picture that you want to print:</p>
+                        <label htmlFor="file-input">
+                          <img src={image ? URL.createObjectURL(image) : upload} style={{ width: "200px", height: "200px" }} className='addproduct-thumbnail-img' alt="404" />
+                        </label>
+                        <input type="file" onChange={imageHandler} name='imagePersonalisade' id='file-input' hidden />
+                      </>
+                    )}
                   </>
                 ) : (
                   <>
-
                     <center><h4 style={{ marginTop: "45px" }}>This product can't be personalised</h4></center>
                     <div className="addproduct-itemfield">
                       <p>Quantity</p>
@@ -241,10 +254,7 @@ function Itemselected(props) {
             <h2 className="titre" style={{ fontSize: "50px" }}> Product that you would like :</h2>
             <hr />
           </div>
-
-
           <ShopCard data={filterList} style={{ marginTop: '100px' }} />
-
         </Container>
         <Footer style={{ marginTop: "10px" }} />
       </section>

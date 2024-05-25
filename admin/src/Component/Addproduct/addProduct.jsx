@@ -16,7 +16,6 @@ function AddProduct() {
         width: "",
         descreption: "",
         personalised: false,
-        souscategorie : "" 
 
     })
     const imageHandler = (e) => {
@@ -100,16 +99,6 @@ function AddProduct() {
                         name="personalised"
                     />
                 </div>
-            </div>
-            <div>
-                <p>Subcategory </p>
-                <select value={productDetails.souscategorie} onChange={changeHandler} name="souscategorie" className='add-product-selector'>
-                        <option value="Painting">{productDetails.category}</option>
-                        <option value="paper">Paper Paint</option>
-                        <option value="Adss">Advertise</option>
-                        <option value="house">Housing items</option>
-                    
-                </select>
             </div>
 
             <div className="addproduct-price">

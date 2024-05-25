@@ -45,13 +45,13 @@
     margin-bottom: 10px;
     border: 1px solid #704646;
     border-radius: 10px;
-    border-color: #048a84;
+    border-color: #0000009b;
 }
 
 .checkout-form button {
     padding: 10px;
     margin-top: 30px;
-    background-color: #048a83bb;
+    background-color: #0000009b;
     color: white;
     border: none;
     border-radius: 3px;
@@ -59,5 +59,5 @@
 }
 
 .checkout-form button:hover {
-    background-color: #048a83bb;
+    background-color: #0000009b;
 }

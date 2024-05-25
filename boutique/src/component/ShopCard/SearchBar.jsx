@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState ,useContext } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { dataShop } from '../SliderCard/SliderData';
+import { ShopContex } from '../../Context/ShopContex';
 import './sherachcard.css';
 
 function SearchBar({ setFilterList }) {
     const [search, setSearch] = useState('');
+    const { All_product} = useContext(ShopContex);
 
     const handleChange = (event) => {
         setSearch(event.target.value);
         setFilterList(
-            dataShop.filter((item) =>
+            All_product.filter((item) =>
                 item.name.toLowerCase().includes(search.toLowerCase())
             )
         );

@@ -49,8 +49,8 @@ function Navbar() {
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             <li className="nav-link active fw-bold " onClick={() => { setMenu("Home") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to='/'>Home </Link> {menu === "Home" ? <hr /> : <></>}</li>
             <li className="nav-link active fw-bold " onClick={() => { setMenu("Shop") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to={`/Shop/Painting`} >Shop</Link> {menu === "Shop" ? <hr /> : <></>}</li>
-            <li className="nav-link active fw-bold " onClick={() => { setMenu("About") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to='/About' >About </Link>{menu === "About" ? <hr /> : <></>}</li>
             <li className="nav-link active fw-bold " onClick={() => { setMenu("Contact") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to='/Contact' >Contact</Link> {menu === "Contact" ? <hr /> : <></>}</li>
+            <li className="nav-link active fw-bold " onClick={() => { setMenu("About") }} > <Link style={{ textDecoration: 'none', color: 'black' }} to='/About' >About </Link>{menu === "About" ? <hr /> : <></>}</li>
           </ul>
           <div className="buttons">
               {localStorage.getItem('auth-token')?<a onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>

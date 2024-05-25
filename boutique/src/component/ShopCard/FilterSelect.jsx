@@ -17,9 +17,9 @@ const options = [
 const customStyles = {
     control: (provided) => ({
         ...provided,
-        backgroundColor: '#03a49c9a',
-        color: 'black',
-        borderRadius: '5px',
+        backgroundColor: '#0000009b',
+        color: '#0000009b',
+        borderRadius: '10px',
         border: 'none',
         boxShadow: 'none',
         width: '200px',
@@ -27,8 +27,8 @@ const customStyles = {
     }),
     option: (provided, state) => ({
         ...provided,
-        backgroundColor: state.isSelected ? '#03a49c9a' : 'white',
-        color: state.isSelected ? 'white' : 'black',
+        backgroundColor: state.isSelected ? '#00000099' : 'white',
+        color: state.isSelected ? 'white' : '#00000099',
         }),
     singleValue: (provided) => ({
         ...provided,

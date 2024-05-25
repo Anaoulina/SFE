@@ -12,9 +12,9 @@ function Item(props) {
     };
     return (
         <>
-            <div className='item' /*style={{ border: '2px solid gray' }}*/ >
+            <div className='item' >
 
-                <img src={props.image} style={{ height: '250px', width: '250px' }} alt="notFound" />
+                <img src={props.image} style={{ height: '240px', width: '240px' , borderRadius : '20px' }} alt="notFound" />
                 <center><p>{props.name}</p></center>
                 <div className="container" >
 
@@ -28,7 +28,7 @@ function Item(props) {
                             {props.old_price} DH
                         </div>
                     </div>
-                    <div className="item-prices">
+                    <div >
                         <button
                             aria-label="Add"
                             type="submit"
